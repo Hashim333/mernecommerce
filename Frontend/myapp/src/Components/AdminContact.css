@@ -1,0 +1,39 @@
+
+.admin-contact-container {
+    flex: 1; /* Takes up remaining space between navbar and footer */
+    padding: 20px;
+  }
+  
+  footer {
+    margin-top: auto; /* Push footer to the bottom */
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .messages-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+  }
+  
+  .messages-table th,
+  .messages-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .messages-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .error {
+    color: red;
+    font-size: 18px;
+    text-align: center;
+  }
