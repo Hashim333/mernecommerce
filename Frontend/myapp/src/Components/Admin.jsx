@@ -7,6 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc'; // Heart icon
 import { FaHome, FaShoppingCart, FaUserAlt, FaInfoCircle } from 'react-icons/fa';
 import { GrContactInfo } from "react-icons/gr";
+import { FcApprove } from "react-icons/fc";
+
 import { BiSolidLogInCircle } from "react-icons/bi";
 import { MdManageAccounts } from "react-icons/md";
 import { GrAppsRounded } from "react-icons/gr";
@@ -267,6 +269,9 @@ export default function Admin() {
           </Link>
           <Link to="/contactmessage" className="navbar-link">
           <GrContactInfo />Support
+          </Link>
+          <Link to="/sellerapprove" className="navbar-link">
+          <FcApprove />Approve
           </Link>
           {/* <Link to="/cart" className="cart-icon-container">
             <FaShoppingCart /> 

@@ -20,8 +20,8 @@ const FooterComponent = () => {
           <ul className="footer-links">
             <li><a href="/about">About Us</a></li>
             <li><a href="/contact">Contact</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms & Conditions</a></li>
+            <li><a href="/privacypolicy">Privacy Policy</a></li>
+            <li><a href="/termsandcondition">Terms & Conditions</a></li>
           </ul>
         </div>
 

@@ -220,7 +220,7 @@ body {
   }
   
   .sections-collection .section-1 {
-    width: 20%; 
+    /* width: 20%;  */
     height: 450px;
 
     background-color: #f4f4f4; 

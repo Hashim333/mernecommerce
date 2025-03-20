@@ -89,15 +89,32 @@ const getsellerProducts =async (req, res) => {
     res.status(500).json({ message: "Error fetching products", error });
   } 
 }
-// Get all products
+// // Get all products
+// const getProduct = async (req, res) => {
+//   try {
+//     const products = await Product.find();
+//     // console.log('Products fetched successfully:', products);
+//     console.log(products);  
+//     res.status(200).json(products);
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     res.status(500).json({ message: "Error fetching products", error });
+//   }
+// };
 const getProduct = async (req, res) => {
   try {
-    const products = await Product.find();
-    // console.log('Products fetched successfully:', products);
-    console.log(products);  
-    res.status(200).json(products);
+    const products = await Product.find().populate({
+      path: "sellerId",
+      match: { banned: false }, // Only include sellers who are not banned
+    });
+
+    // Remove products where sellerId is null (meaning the seller was banned)
+    const filteredProducts = products.filter(product => product.sellerId);
+
+    console.log(filteredProducts);
+    res.status(200).json(filteredProducts);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error("Error fetching products:", error);
     res.status(500).json({ message: "Error fetching products", error });
   }
 };

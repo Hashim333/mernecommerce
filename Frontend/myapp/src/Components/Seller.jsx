@@ -153,6 +153,12 @@ export default function Seller() {
       }
   
       try {
+        const sellerResponse = await axios.get(`${serverURL}/api/seller/get/${sellerId}`);
+    
+        if (!sellerResponse.data.isApproved) {
+          alert("Your registration is not yet approved by the admin. Please wait for approval.");
+          return;
+        }
         const newProduct = {
           name: newProductName,
           price: newProductPrice,

@@ -39,6 +39,9 @@ import Feedback from "./Components/Feedback";
 import Feedbacks from "./Components/Feedbacks";
 import ResetPassword from "./Components/ResetPassword";
 import AdminContact from "./Components/AdminContact";
+import PrivacyPolicy from "./Components/PrivacyPolicy";
+import TermsAndConditions from "./Components/TermsAndConditions";
+import AdminSellerApprove from "./Components/AdminSellerApprove";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -302,6 +305,8 @@ function App() {
           <Route path="/adminorder" element={<AdminOrders />} />
           <Route path="/adminseller" element={<AdminSeller />} />
           <Route path="/feedback" element={<Feedback />} />
+          <Route path="/sellerapprove" element={<AdminSellerApprove />} />
+
 
 
 
@@ -315,6 +320,10 @@ function App() {
             <Route path="/banseller" element={<AdminSellerBan />} />
             <Route path="/feedbacks" element={<Feedbacks />} />
             <Route path="/contactmessage" element={<AdminContact />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/termsandcondition" element={<TermsAndConditions />} />
+
+
 
 
 

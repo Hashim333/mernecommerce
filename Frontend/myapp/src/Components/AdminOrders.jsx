@@ -48,7 +48,7 @@ export default function AdminOrders() {
     }
   };
   // console.log("orderslinkm",orders);
-
+  
   return (
     <div className="home-wraper">
       <nav className="navbar">
@@ -97,73 +97,75 @@ export default function AdminOrders() {
       <div className="admin-orders">
         <h1>Admin Orders</h1>
         <ul className="order-list">
-          {Array.isArray(orders) && orders.length > 0 ? (
-            orders.map((order) => (
-              <li key={order._id.$oid} className="order-item">
-                <div className="order-details">
-                  <p>
-                    <strong>Order ID:</strong> {order._id}
-                  </p>
-                  <p>
-                    <strong>User ID:</strong> {order.userId._id || "N/A"}
-                  </p>
-                  <p>
-                    <strong>User Email:</strong> {order.userId.email || "N/A"}
-                  </p>
+        {orders.map((order) => {
+  console.log("Total Amount:", order.totalAmount);
+  
+  return (
+    <li key={order._id.$oid} className="order-item">
+      <div className="order-details">
+        <p>
+          <strong>Order ID:</strong> {order._id}
+        </p>
+        <p>
+          <strong>User ID:</strong> {order.userId._id || "N/A"}
+        </p>
+        <p>
+          <strong>User Email:</strong> {order.userId.email || "N/A"}
+        </p>
+        <p>
+          <strong>Order Status:</strong> {order.status}
+        </p>
+        <p>
+          <strong>Payment Method:</strong> {order.paymentMethod}
+        </p>
+        <p>
+          <strong>Total Amount:</strong> ${order.totalAmount || 0}
+        </p>
+        <p>
+          <strong>Shipping Address:</strong>
+        </p>
+        <ul>
+          <li>{order.shippingAddresses[0]?.addressLine1 || "N/A"}</li>
+          <li>{order.shippingAddresses[0]?.addressLine2 || "N/A"}</li>
+          <li>
+            {order.shippingAddresses[0]?.city},{" "}
+            {order.shippingAddresses[0]?.state}
+          </li>
+          <li>
+            {order.shippingAddresses[0]?.postalCode},{" "}
+            {order.shippingAddresses[0]?.country}
+          </li>
+        </ul>
 
-                  <p>
-                    <strong>Order Status:</strong> {order.status}
-                  </p>
-                  <p>
-                    <strong>Payment Method:</strong> {order.paymentMethod}
-                  </p>
-                  <p>
-                    <strong>Total Amount:</strong> ${order.totalAmount || 0}
-                  </p>
-                  <p>
-                    <strong>Shipping Address:</strong>
-                  </p>
-                  <ul>
-  <li>{order.shippingAddresses[0]?.addressLine1 || "N/A"}</li>
-  <li>{order.shippingAddresses[0]?.addressLine2 || "N/A"}</li>
-  <li>
-    {order.shippingAddresses[0]?.city}, {order.shippingAddresses[0]?.state}
-  </li>
-  <li>
-    {order.shippingAddresses[0]?.postalCode}, {order.shippingAddresses[0]?.country}
-  </li>
-</ul>
+        <p>
+          <strong>Products:</strong>
+        </p>
+        <ul>
+          {order.products.map((product) => (
+            <li key={product._id}>
+              <p>
+                <strong>Product ID:</strong> {product.productId}
+              </p>
+              <p>
+                <strong>Seller ID:</strong> {product.sellerId}
+              </p>
+              <p>
+                <strong>Size:</strong> {product.size}
+              </p>
+              <p>
+                <strong>Quantity:</strong> {product.quantity}
+              </p>
+              <p>
+                <strong>Price:</strong> ${product.price}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  );
+})}
 
-                  <p>
-                    <strong>Products:</strong>
-                  </p>
-                  <ul>
-                    {order.products.map((product) => (
-                      <li key={product._id}>
-                        <p>
-                          <strong>Product ID:</strong> {product.productId}
-                        </p>
-                        <p>
-                          <strong>Seller ID:</strong> {product.sellerId}
-                        </p>
-                        <p>
-                          <strong>Size:</strong> {product.size}
-                        </p>
-                        <p>
-                          <strong>Quantity:</strong> {product.quantity}
-                        </p>
-                        <p>
-                          <strong>Price:</strong> ${product.price}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))
-          ) : (
-            <p>No orders available.</p>
-          )}
         </ul>
       </div>
       <div>

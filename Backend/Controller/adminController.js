@@ -113,4 +113,26 @@ const contactMessage= async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
-  module.exports = { adminLogin ,getAllOrders,getAllSellers,toggleBanUser,toggleBanSeller,contactMessage};
+// const Seller = require("../Model/sellerModel");
+
+// Get all unapproved sellers
+const getUnapprovedSellers = async (req, res) => {
+  try {
+    const sellers = await Seller.find({ approved: false });
+    res.status(200).json(sellers);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching unapproved sellers", error });
+  }
+};
+const approveSeller = async (req, res) => {
+  try {
+    const sellerId = req.params.id;
+    await Seller.findByIdAndUpdate(sellerId, { approved: true });
+
+    res.status(200).json({ message: "Seller approved successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error approving seller", error });
+  }
+};
+
+  module.exports = { adminLogin ,getAllOrders,getAllSellers,approveSeller,getUnapprovedSellers,toggleBanUser,toggleBanSeller,contactMessage};

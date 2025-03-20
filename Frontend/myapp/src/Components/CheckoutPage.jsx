@@ -24,6 +24,18 @@ export default function CheckoutPage({ cartItems, totalAmount }) {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const location = useLocation();
   const { selectedItems, totalPrice } = location.state || { selectedItems: [], totalPrice: 0 };
+
+  const DELIVERY_FEE = 55;
+  // const finalTotalAmount = totalPrice + DELIVERY_FEE; 
+
+  // const finalTotalAmount = Number(totalPrice) + DELIVERY_FEE;
+  const [finalTotalAmount, setFinalTotalAmount] = useState(0);
+
+useEffect(() => {
+  setFinalTotalAmount(Number(totalPrice) + DELIVERY_FEE);
+}, [totalPrice]);
+
+
   // Fetch saved addresses
   useEffect(() => {
     if (currentUserId) {
@@ -56,6 +68,7 @@ export default function CheckoutPage({ cartItems, totalAmount }) {
       alert("Failed to save the address. Please try again.");
     }
   };
+  console.log("Final Total Amount:", finalTotalAmount);
 
   const handleOrderSubmit = async () => {
     const finalShippingAddress = selectedAddress || shippingAddress;
@@ -80,7 +93,7 @@ export default function CheckoutPage({ cartItems, totalAmount }) {
         size: item.size,
         price: item.product.price,
       })),
-      totalAmount: totalPrice,
+      totalAmount: finalTotalAmount,
       paymentMethod: paymentMethod,
       shippingAddress: finalShippingAddress,
     };
@@ -116,6 +129,12 @@ export default function CheckoutPage({ cartItems, totalAmount }) {
       <h1 className="checkout-title">Checkout</h1>
 
       {/* Address Selection */}
+      <div className="total-summary">
+        <h2>Order Summary</h2>
+        <p>Subtotal: ${totalPrice.toFixed(2)}</p>
+        <p>Delivery Fee: ${DELIVERY_FEE.toFixed(2)}</p>
+        <h3>Total Amount: ${finalTotalAmount.toFixed(2)}</h3>
+      </div>
       <div className="mb-4">
     <h2>Shipping Address</h2>
     <div className="row gy-3">

@@ -93,7 +93,7 @@ const OrderSuccess = () => {
       sellerId,
       quantity,
       size,
-      totalAmount: price * quantity,
+      totalAmount:finalAmount,
       paymentMethod,
       shippingAddress: selectedAddress,
     };
@@ -117,7 +117,9 @@ const OrderSuccess = () => {
       navigate("/login");
     }
   };
-
+  const deliveryFee = 55;
+  const totalPrice = price * quantity; 
+  const finalAmount = totalPrice + deliveryFee; 
   return (
     <div className="order-success-page">
       <nav className="navbar">
@@ -135,22 +137,28 @@ const OrderSuccess = () => {
       </nav>
 
       <div className="order-summary card mb-4">
-  <div className="card-body">
-    <h4 className="card-title">Order Summary</h4>
-    <div className="d-flex align-items-center gap-3">
-      <img 
-        src={image} 
-        alt={productName} 
-        className="img-fluid order-image" 
-        style={{ width: "80px", height: "130px", marginRight: "15px" }} 
-      />
-      <p className="mb-0 mr-3"><strong>{productName}</strong></p>
-      <p className="mb-0 mr-3"><strong>Size: {size}</strong></p>
-      <p className="mb-0 mr-3"><strong>Quantity: {quantity}</strong></p>
-      <p className="mb-0"><strong>Total Price: ₹{price * quantity}</strong></p>
+      <div className="card-body">
+        <h4 className="card-title">Order Summary</h4>
+        <div className="d-flex align-items-center gap-3">
+          <img 
+            src={image} 
+            alt={productName} 
+            className="img-fluid order-image" 
+            style={{ width: "80px", height: "130px", marginRight: "15px" }} 
+          />
+          <p className="mb-0"><strong>{productName}</strong></p>
+          <p className="mb-0"><strong>Size: {size}</strong></p>
+          <p className="mb-0"><strong>Quantity: {quantity}</strong></p>
+        </div>
+
+        {/* Display pricing details including delivery fee */}
+        <div className="pricing-details mt-3">
+          <p><strong>Product Price: ₹{totalPrice}</strong></p>
+          <p><strong>Delivery Fee: ₹{deliveryFee}</strong></p>
+          <p><strong>Total Amount: ₹{finalAmount}</strong></p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
 
 
