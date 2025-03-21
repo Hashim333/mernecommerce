@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Feedbak.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaHome, FaInfoCircle } from "react-icons/fa";
 import FooterComponent from "./Footer";
 
 const Feedback = ({ userId, userType }) => {
+  const navigate=useNavigate()
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [feedbackStatus, setFeedbackStatus] = useState("");
 const email=localStorage.getItem("userEmail");
 
 console.log("ggvhbh",email);
+const token = localStorage.getItem("authToken");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!token) {
+      if (
+        window.confirm(
+          "You must log in to do anything here please log in !?"
+        )
+      ) {
+        navigate("/login");
+        // <link to={'/sellerlogin'}></link>
+        return;
+      }
+    }
     try {
       const response = await axios.post("http://localhost:5000/api/feedback/feedback", {
         subject,
