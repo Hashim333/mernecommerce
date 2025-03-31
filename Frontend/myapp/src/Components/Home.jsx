@@ -163,8 +163,8 @@ export default function Home() {
       } else {
         console.log(error);
         // alert("Failed to add product to cart");
-        toast.error("Failed to add product!");
-        alert("failed to add to cart");
+        // toast.error("Failed to add product!");
+        alert("failed to add to cart,must check you were logged in !");
       }
     }
   };
@@ -302,18 +302,21 @@ export default function Home() {
               <option value="Kids">Kids</option>
             </select>
           </label> */}
-          <label>
-            Category:
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-            >
-              <option value="all">All</option>
-              <option value="Men">Men</option>
-              <option value="Women">Women</option>
-              <option value="Kids">Kids</option>
-            </select>
-          </label>
+          <label className="form-label">
+  Select Category:
+  <select
+    className="form-select form-select-lg rounded shadow"
+    style={{ backgroundColor: "rgb(51 109 255", color: "#000" }}
+    value={selectedCategory}
+    onChange={(e) => setSelectedCategory(e.target.value)}
+  >
+    <option value="all">All</option>
+    <option value="Men">Men</option>
+    <option value="Women">Women</option>
+    <option value="Kids">Kids</option>
+  </select>
+</label>
+
 
           {/* <label>
             Price Range:
@@ -404,7 +407,7 @@ export default function Home() {
         {/* </div>  */}
         {/* <div className="product-info"> */}
           <h4>{item.name}</h4>
-          <p>
+          <p className="fw-bold fs-4 text-primary">
             <FaRupeeSign />: {item.price}
           </p>
           <p>Category: {item.category}</p>
@@ -427,7 +430,7 @@ export default function Home() {
         </button>
 
         <label htmlFor={`size-select-${item._id}`} className="form-label">
-  Select Size:
+  {/* Select Size: */}
 </label>
 <select
   id={`size-select-${item._id}`}
@@ -474,7 +477,7 @@ export default function Home() {
                           className="offer-image"
                         />
                         <h4>{item.name}</h4>
-                        <p>
+                        <p className="text-success fw-bold">
                           <FaRupeeSign />: {item.price}
                         </p>
                         <p>Category: {item.category}</p>
@@ -495,7 +498,7 @@ export default function Home() {
                       </button>
 
                       <label htmlFor={`size-select-${item._id}`} className="form-label">
-  Select Size:
+  {/* Select Size: */}
 </label>
 <select
   id={`size-select-${item._id}`}

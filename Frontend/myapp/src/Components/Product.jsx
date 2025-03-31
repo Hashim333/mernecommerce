@@ -26,7 +26,8 @@ export default function Product() {
     setCart,
     isInCart,
     cartCount,
-    currentUserId,setWishlistCount,
+    currentUserId,
+    setWishlistCount,
     email,
     setCartCount,
     // handleAddToWishlist,
@@ -37,7 +38,7 @@ export default function Product() {
   const [prd, setPrd] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [selectedSize, setSelectedSize] = useState(""); 
+  const [selectedSize, setSelectedSize] = useState("");
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -68,18 +69,18 @@ export default function Product() {
       return;
     }
 
-  if (!prd) {
-    alert("Product data is unavailable.");
-    return;
-  }
-  if (!prd.sellerId) {
-    alert("Seller information is missing for this product.");
-    return;
-  }
+    if (!prd) {
+      alert("Product data is unavailable.");
+      return;
+    }
+    if (!prd.sellerId) {
+      alert("Seller information is missing for this product.");
+      return;
+    }
     navigate("/ordersuccess", {
       state: {
         productId: prd._id,
-        sellerId:prd.sellerId._id,
+        sellerId: prd.sellerId._id,
         size: selectedSize,
         quantity: 1, // Default to 1, or let the user choose
         price: prd.price,
@@ -89,15 +90,17 @@ export default function Product() {
     });
   };
 
-  
-  
   const handleAddToWishlist = async (productId) => {
     const userId = currentUserId;
     if (!token) {
-      if (window.confirm("You must log in to add items to the wshlist. Do you want to log in now?")) {
-        navigate("/login"); 
-        
-        return; 
+      if (
+        window.confirm(
+          "You must log in to add items to the wshlist. Do you want to log in now?"
+        )
+      ) {
+        navigate("/login");
+
+        return;
       }
     }
     try {
@@ -109,28 +112,21 @@ export default function Product() {
       if (response.status === 200) {
         console.log("Item added to wishlist:", response.data);
 
-        
         setWishlist((prevWishlist) => [...prevWishlist, { productId }]);
         setWishlistCount((prevCount) => prevCount + 1);
 
-        
         alert("Product added to wishlist successfully! 🎉");
-        refreshWishllist()
-       
+        refreshWishllist();
       } else {
         console.warn("Unexpected response:", response);
       }
     } catch (error) {
       if (error.response) {
-     
-         if (error.response.status === 400) {
-          
+        if (error.response.status === 400) {
           alert("Failed to add product. Missing required information.");
         } else if (error.response.status === 404) {
-          
           alert("Product not found. Please try again later.");
         } else {
-          
           alert(`Failed to add product. ${error.response.data.message}`);
         }
       } else {
@@ -176,47 +172,49 @@ export default function Product() {
       }
     } catch (error) {
       console.error("Error removing product from wishlist:", error);
-      
     }
   };
-  
+
   const handleAddToCart = async (productId) => {
     const userId = currentUserId;
-    
+
     const size = selectedSize[productId];
     if (!token) {
-      if (window.confirm("You must log in to add items to the cart. Do you want to log in now?")) {
-        navigate("/login"); 
-        
-        
-        return; 
+      if (
+        window.confirm(
+          "You must log in to add items to the cart. Do you want to log in now?"
+        )
+      ) {
+        navigate("/login");
+
+        return;
       }
     }
     if (!selectedSize) {
       alert("Please select a size before adding to the cart.");
       return;
     }
-  
+
     try {
       const addedDate = new Date().toISOString();
       const response = await axios.post(`${serverURL}/api/cart/add`, {
-        userId:currentUserId,
-        productId:productId,
-        size:selectedSize,
+        userId: currentUserId,
+        productId: productId,
+        size: selectedSize,
         quantity: 1,
         addedDate,
       });
       if (response.status === 200) {
         setCart((prevCart) => {
           const updatedCart = [...prevCart, { productId, size, quantity: 1 }];
-  
+
           // localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
+
           return updatedCart;
         });
         setCartCount((prevCount) => prevCount + 1);
         alert("Product added to cart successfully");
-        refreshCart()
+        refreshCart();
         // toast.success("Product added to cart!");
       }
     } catch (error) {
@@ -227,7 +225,7 @@ export default function Product() {
         alert("Failed to add product to cart");
         // toast.error("Failed to add product!");
         // alert("failed to add to cart");
-        }
+      }
     }
   };
 
@@ -237,15 +235,15 @@ export default function Product() {
 
   return (
     <div className="product-page">
-     <nav className="cart-navbar">
-             <div className="cart-store-icon">
-               <Link to="/" className="navbar-brand">
-                 🛒 MyStore
-               </Link>
-             </div>
-             <div className="navbar-links">
-               <div className="link-group">
-                 {/* <Link to="/wishlist" className="cart-icon-container">
+      <nav className="cart-navbar">
+        <div className="cart-store-icon">
+          <Link to="/" className="navbar-brand">
+            🛒 MyStore
+          </Link>
+        </div>
+        <div className="navbar-links">
+          <div className="link-group">
+            {/* <Link to="/wishlist" className="cart-icon-container">
                    <FcLike className="heart-icon" />
                    {wishlistCount > 0 && (
                      <span className="cart-count">{wishlistCount}</span>
@@ -256,55 +254,59 @@ export default function Product() {
                                {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
                                Cart
                              </Link> */}
-                 {/* <Link to="/" className="navbar-link">
+            {/* <Link to="/" className="navbar-link">
                    <FaHome /> Home
                  </Link> */}
-                 {/* <Link to="/about" className="navbar-link">
+            {/* <Link to="/about" className="navbar-link">
                    <FaInfoCircle /> About
                  </Link> */}
-               </div>
-             </div>
-           </nav>
-     
+          </div>
+        </div>
+      </nav>
+
       <div className="product-container">
         <div className="product-image-container-w">
           <img src={prd.image} alt={prd.name} className="product-image" />
           {/* Wishlist button */}
           <button
-  className="wishlist-overlay "
-  onClick={() =>
-    isInWishlist(prd._id)
-      ? handleRemoveFromWishlist(prd._id)
-      : handleAddToWishlist(prd._id)
-  }
->
-  {isInWishlist(prd._id) ? (
-    <FcLike className="heart-icon" />
-  ) : (
-    <FiHeart className="heart-icon" />
-  )}
-</button>;
-
+            className="wishlist-overlay "
+            onClick={() =>
+              isInWishlist(prd._id)
+                ? handleRemoveFromWishlist(prd._id)
+                : handleAddToWishlist(prd._id)
+            }
+          >
+            {isInWishlist(prd._id) ? (
+              <FcLike className="heart-icon" />
+            ) : (
+              <FiHeart className="heart-icon" />
+            )}
+          </button>
+          
         </div>
-        <div className="product-details">
+        <div className="container mt-4">
+        <div className="row">
           {" "}
           <h2 className="product-name">{prd.name}</h2>{" "}
-          <p className="product-price"><FaRupeeSign />: {prd.price}</p>{" "}
+          <p className="product-price">
+            <FaRupeeSign />: {prd.price}
+          </p>{" "}
           <p className="product-category"> {prd.category}</p>{" "}
           <p className="product-quantity"> {prd.subCategory}</p>{" "}
-          <p className="product-quantity"> {prd.description }</p>{" "}
+          <p className="product-quantity"> {prd.description}</p>{" "}
           <p className="product-quantity"> {prd.tags}</p>{" "}
           <p className="product-quantity">Colour: {prd.color}</p>{" "}
-
-{/* Size Selection */}
-<div className="product-size-selection">
+          {/* Size Selection */}
+          <div className="product-size-selection">
             <h4>Select Size:</h4>
             <div className="size-options">
               {prd.sizes.map((sizeObj) => (
                 <button
                   key={sizeObj.size}
                   disabled={sizeObj.stock === 0}
-                  className={`size-button ${selectedSize === sizeObj.size ? "selected" : ""}`}
+                  className={`size-button ${
+                    selectedSize === sizeObj.size ? "selected" : ""
+                  }`}
                   onClick={() => setSelectedSize(sizeObj.size)}
                 >
                   {sizeObj.size} {sizeObj.stock === 0 ? "(Out of Stock)" : ""}
@@ -312,9 +314,8 @@ export default function Product() {
               ))}
             </div>
           </div>
-
+          </div>
           <div className="product-actions">
-          
             {/* <button
               onClick={() => handleWishlist(prd)}
               className={`add-to-wishlist ${
@@ -330,7 +331,7 @@ export default function Product() {
                 <FiHeart className="heart-icon" />
               )}{" "}
             </button>{" "} */}
-            
+
             {/* <button
               onClick={() => handleAddToCart(prd)}
               className={`add-to-cart-button ${
@@ -346,25 +347,34 @@ export default function Product() {
                 <FaShoppingCart className="cart-icon" />
               )}
             </button> */}
-             <button
-                    className="add-to-cart-button-p"
-                    onClick={() => handleAddToCart(prd._id)}
-                  >
-                    {isInCart(prd._id) ? (
-                      <BsCartCheckFill className="cart-icon" />
-                    ) : (
-                      <FaShoppingCart className="cart-icon" />
-                    )}
-                  </button>
-            <button className="buy-button" onClick={() => handlebuy(prd)}>
+            <button
+              className="add-to-cart-button-p"
+              onClick={() => handleAddToCart(prd._id)}
+            >
+              {isInCart(prd._id) ? (
+                <BsCartCheckFill className="cart-icon" />
+              ) : (
+                <FaShoppingCart className="cart-icon" />
+              )}
+            </button>
+            {/* <button className="buy-button" onClick={() => handlebuy(prd)}>
               
               Buy
+            </button> */}
+            {/* <button className="btn btn-primary btn-lg shadow-lg px-4 py-2" onClick={() => handlebuy(prd)}>
+  Buy
+</button> */}
+            <button
+              className="btn btn-success w-100 py-3 fw-bold text-uppercase shadow-lg rounded-3"
+              onClick={() => handlebuy(prd)}
+            >
+              Buy Now
             </button>
           </div>
         </div>
       </div>
-      
-       {/* <div className="related-products">
+
+      {/* <div className="related-products">
         <h3>Related Products</h3>
         <div className="related-products-grid">
           {relatedProducts.map((relatedProduct) => (
@@ -386,40 +396,42 @@ export default function Product() {
           ))}
         </div>
         </div> */}
-        <div className="product-list-section-e">
-  <h3>Related Products</h3>
-  <div className="wrapper">
-  <div className="product-list-e">
-    {product
-      .filter((item) => item.category === prd.category && item._id !== prd._id)
-      .map((item) => (
-        <div key={item._id} className="product-item-e">
-          <Link to={`/product/${item._id}`}>
-          <img
-            src={item.image}
-            alt={item.name}
-            className="related-product-image"
-            onClick={() => navigate(`/product/${item._id}`)} // Navigate to the selected product
-          />
-          <h4 className="related-product-name">{item.name}</h4>
-          <p className="related-product-price">
-            <FaRupeeSign /> {item.price}
-          </p>
-          </Link>
-          {/* <button
+      <div className="product-list-section-e">
+        <h3>Related Products</h3>
+        <div className="wrapper">
+          <div className="product-list-e">
+            {product
+              .filter(
+                (item) => item.category === prd.category && item._id !== prd._id
+              )
+              .map((item) => (
+                <div key={item._id} className="product-item-e">
+                  <Link to={`/product/${item._id}`}>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="related-product-image"
+                      onClick={() => navigate(`/product/${item._id}`)} // Navigate to the selected product
+                    />
+                    <h4 className="related-product-name">{item.name}</h4>
+                    <p className="related-product-price">
+                      <FaRupeeSign /> {item.price}
+                    </p>
+                  </Link>
+                  {/* <button
             className="add-to-cart-button"
             onClick={() => handleAddToCart(item._id)}
           >
             Add to Cart
           </button> */}
+                </div>
+              ))}
+          </div>
         </div>
-      ))}
-  </div>
-  </div>
-</div>
+      </div>
 
       <div>
-      <FooterComponent/>
+        <FooterComponent />
       </div>
     </div>
   );
