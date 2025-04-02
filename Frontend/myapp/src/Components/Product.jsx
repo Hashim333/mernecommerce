@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { myContext } from "../Context";
 import Navbar from "./Navbar";
@@ -13,6 +13,13 @@ import { MdRemoveShoppingCart } from "react-icons/md";
 import { FaRupeeSign } from "react-icons/fa";
 import FooterComponent from "./Footer";
 export default function Product() {
+ 
+
+  const handleRelatedProductClick = (prd) => {
+    setCurrentProduct(prd);
+    productRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
   const {
     serverURL,
     // handleAddToCart,
@@ -42,6 +49,8 @@ export default function Product() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [currentProduct, setCurrentProduct] = useState(prd);
+  const productRef = useRef(null);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -265,7 +274,9 @@ export default function Product() {
       </nav>
 
       <div className="product-container">
-        <div className="product-image-container-w">
+        <div className="product-image-container-w"
+         ref={productRef}
+         style={{ padding: "20px", border: "1px solid #ccc" }}>
           <img src={prd.image} alt={prd.name} className="product-image" />
           {/* Wishlist button */}
           <button
@@ -396,40 +407,41 @@ export default function Product() {
           ))}
         </div>
         </div> */}
-      <div className="product-list-section-e">
-        <h3>Related Products</h3>
-        <div className="wrapper">
-          <div className="product-list-e">
-            {product
-              .filter(
-                (item) => item.category === prd.category && item._id !== prd._id
-              )
-              .map((item) => (
-                <div key={item._id} className="product-item-e">
-                  <Link to={`/product/${item._id}`}>
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="related-product-image"
-                      onClick={() => navigate(`/product/${item._id}`)} // Navigate to the selected product
-                    />
-                    <h4 className="related-product-name">{item.name}</h4>
-                    <p className="related-product-price">
-                      <FaRupeeSign /> {item.price}
-                    </p>
-                  </Link>
-                  {/* <button
-            className="add-to-cart-button"
-            onClick={() => handleAddToCart(item._id)}
-          >
-            Add to Cart
-          </button> */}
-                </div>
-              ))}
+   <div className="container-fluid mt-4">
+  <h3 className="text-center mb-3 fw-bold">Related Products</h3>
+  <div className="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 gx-2 gy-2">
+    {product
+      .filter((item) => item.category === prd.category && item._id !== prd._id)
+      .map((item) => (
+        <div key={item._id
+          }onClick={() => handleRelatedProductClick(item)} style={{ cursor: "pointer" }} className="col">
+          <div className="card shadow-sm border-0 h-100">
+            <Link to={`/product/${item._id}`} className="text-decoration-none text-dark">
+              <div className="image-container">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="card-img-top fixed-product-image"
+                  onClick={() => navigate(`/product/${item._id}`)}
+                />
+              </div>
+              <div className="card-body text-center p-2">
+                <h6 className="card-title fw-bold">{item.name}</h6>
+                <p className="text-primary fs-6 mb-2">
+                  <FaRupeeSign /> {item.price}
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
-      </div>
+      ))}
+  </div>
+</div>
 
+
+<div>
+
+</div>
       <div>
         <FooterComponent />
       </div>
