@@ -175,11 +175,13 @@ const handleDecrement = (productId, size) => {
         <section className="product-list-section">
           <h2>Your Cart</h2>
           <label>
+          Select All 
             <input
               type="checkbox"
               onChange={(e) => handleSelectAll(e.target.checked)}
+              style={{width:"20px",height:"20px",marginLeft: "8px"}}
             />
-            Select All
+           
           </label>
           <p>Total Price for Selected Items: ₹{totalPrice.toFixed(2)}</p>
           <ul className="cart-product-list">
@@ -193,8 +195,9 @@ const handleDecrement = (productId, size) => {
           type="checkbox"
           checked={cartItem.selected}
           onChange={() =>
-            handleItemSelection(cartItem.product._id, cartItem.size)
+            handleItemSelection(cartItem.product._id, cartItem.size)   
           }
+          style={{width:"20px",height:"20px"}}
         />
       </label>
       <img

@@ -407,9 +407,12 @@ export default function Home() {
         {/* </div>  */}
         {/* <div className="product-info"> */}
           <h4>{item.name}</h4>
-          <p className="fw-bold fs-4 text-primary">
+          {/* <p className="fw-bold fs-4 text-primary">
             <FaRupeeSign />: {item.price}
-          </p>
+          </p> */}
+<p className="text-success fw-bold">
+                          <FaRupeeSign />: {item.price}
+                        </p>
           <p>Category: {item.category}</p>
         {/* </div> */}
       </Link>
