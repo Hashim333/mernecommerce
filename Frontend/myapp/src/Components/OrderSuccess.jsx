@@ -144,11 +144,14 @@ const OrderSuccess = () => {
             src={image} 
             alt={productName} 
             className="img-fluid order-image" 
-            style={{ width: "80px", height: "130px", marginRight: "15px" }} 
+            style={{ width: "auto", height: "auto", marginRight: "15px" }} 
           />
-          <p className="mb-0"><strong>{productName}</strong></p>
-          <p className="mb-0"><strong>Size: {size}</strong></p>
-          <p className="mb-0"><strong>Quantity: {quantity}</strong></p>
+         <div className="product-details">
+  <p className="product-info"><strong>{productName}</strong></p>
+  <p className="product-info"><strong>Size: {size}</strong></p>
+  <p className="product-info"><strong>Quantity: {quantity}</strong></p>
+</div>
+
         </div>
 
         {/* Display pricing details including delivery fee */}
@@ -191,62 +194,65 @@ const OrderSuccess = () => {
     )}
 
     {showAddressForm && (
-      <form className="address-form mt-3">
-        <input
-          type="text"
-          name="addressLine1"
-          placeholder="Address Line 1"
-          value={shippingAddress.addressLine1}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="addressLine2"
-          placeholder="Address Line 2"
-          value={shippingAddress.addressLine2}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="city"
-          placeholder="City"
-          value={shippingAddress.city}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="state"
-          placeholder="State"
-          value={shippingAddress.state}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="postalCode"
-          placeholder="Postal Code"
-          value={shippingAddress.postalCode}
-          onChange={handleInputChange}
-          required
-        />
-        <input
-          type="text"
-          name="country"
-          placeholder="Country"
-          value={shippingAddress.country}
-          onChange={handleInputChange}
-          required
-        />
-        <button
-          type="button"
-          className="btn btn-success mt-2"
-          onClick={handleSaveNewAddress}
-        >
-          Save Address
-        </button>
-      </form>
+      <form className="shipping-form mt-4 p-4">
+      <input
+        type="text"
+        name="addressLine1"
+        placeholder="Address Line 1"
+        value={shippingAddress.addressLine1}
+        onChange={handleInputChange}
+        required
+        className="form-input"
+      />
+      <input
+        type="text"
+        name="addressLine2"
+        placeholder="Address Line 2"
+        value={shippingAddress.addressLine2}
+        onChange={handleInputChange}
+        className="form-input"
+      />
+      <input
+        type="text"
+        name="city"
+        placeholder="City"
+        value={shippingAddress.city}
+        onChange={handleInputChange}
+        required
+        className="form-input"
+      />
+      <input
+        type="text"
+        name="state"
+        placeholder="State"
+        value={shippingAddress.state}
+        onChange={handleInputChange}
+        required
+        className="form-input"
+      />
+      <input
+        type="text"
+        name="postalCode"
+        placeholder="Postal Code"
+        value={shippingAddress.postalCode}
+        onChange={handleInputChange}
+        required
+        className="form-input"
+      />
+      <input
+        type="text"
+        name="country"
+        placeholder="Country"
+        value={shippingAddress.country}
+        onChange={handleInputChange}
+        required
+        className="form-input"
+      />
+      <button type="button" className="btn btn-success btn-lg mt-3" onClick={handleSaveNewAddress}>
+        Save Address
+      </button>
+    </form>
+    
     )}
 
     <button

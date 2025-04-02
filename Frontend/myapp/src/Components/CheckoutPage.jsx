@@ -20,6 +20,9 @@ export default function CheckoutPage({ cartItems, totalAmount }) {
     postalCode: "",
     country: "",
   });
+   useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   const [paymentMethod, setPaymentMethod] = useState("Credit Card");
   const [showAddressForm, setShowAddressForm] = useState(false);
   const location = useLocation();
@@ -176,7 +179,7 @@ useEffect(() => {
     <div className="card p-3 mb-4">
       <h2>Add Address</h2>
       <div className="row gy-3">
-        {["addressLine1", "addressLine2", "city", "state", "postalCode", "country"].map(
+        {["AddressLine1", "AddressLine2", "City", "State", "PostalCode", "Country"].map(
           (field, index) => (
             <div className="col-md-6" key={index}>
               <label className="form-label">

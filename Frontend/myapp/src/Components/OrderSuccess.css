@@ -39,4 +39,38 @@
   .order-card ul li {
     margin-bottom: 5px;
   }
+  .shipping-form {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shipping-form .form-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .shipping-form .btn-success {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .product-details {
+    display: flex;
+    gap: 15px; /* Adjust spacing */
+  }
+  
+  .product-info {
+    margin: 0;
+    display: inline-block;
+  }
   

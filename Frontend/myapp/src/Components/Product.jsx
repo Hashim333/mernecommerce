@@ -15,9 +15,13 @@ import FooterComponent from "./Footer";
 export default function Product() {
  
 
-  const handleRelatedProductClick = (prd) => {
-    setCurrentProduct(prd);
-    productRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+//   const handleRelatedProductClick = (prd) => {
+//     setCurrentProduct(prd);
+//     productRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+// };
+const handleRelatedProductClick = (prd) => {
+  setCurrentProduct(prd);
+  window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top smoothly
 };
 
   const {

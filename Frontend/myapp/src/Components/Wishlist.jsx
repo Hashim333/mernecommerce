@@ -51,7 +51,10 @@ export default function Wishlist() {
     setPassword,
     refreshCart,
   } = useContext(myContext);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const [selectedSize, setSelectedSize] = useState({});
   useEffect(() => {
     refreshCart();
