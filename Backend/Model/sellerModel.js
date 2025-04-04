@@ -33,7 +33,7 @@ const sellerSchema=new mongoose.Schema({
     feedbacks: [
         {
           type: mongoose.Schema.Types.ObjectId,
-          ref: "Feedback", // Links feedback entries
+          ref: "Feedback",
         },
       ],
 });

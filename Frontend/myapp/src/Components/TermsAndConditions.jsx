@@ -1,8 +1,38 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "./Policy.css"
 const TermsAndConditions = () => {
   return (
-    <div className="container mx-auto p-6 text-gray-800">
+    <div className="home-wrapper">
+      <nav className="cart-navbar">
+                    <div className="cart-store-icon">
+                      <Link to="/" className="navbar-brand">
+                        🛒 MyStore
+                      </Link>
+                    </div>
+                    <div className="navbar-links">
+                      <div className="link-group">
+                        {/* <Link to="/wishlist" className="cart-icon-container">
+                               <FcLike className="heart-icon" />
+                               {wishlistCount > 0 && (
+                                 <span className="cart-count">{wishlistCount}</span>
+                               )}
+                             </Link>
+                              <Link to="/cart" className="cart-icon-container">
+                                           <FaShoppingCart />
+                                           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+                                           Cart
+                                         </Link> */}
+                        {/* <Link to="/" className="navbar-link">
+                               <FaHome /> Home
+                             </Link> */}
+                        {/* <Link to="/about" className="navbar-link">
+                               <FaInfoCircle /> About
+                             </Link> */}
+                      </div>
+                    </div>
+                  </nav>
+    <div className="privacy-policy-wrapper">
       <h1 className="text-3xl font-bold mb-4">Terms and Conditions</h1>
       <p className="mb-4">Welcome to our website. By accessing or using our services, you agree to be bound by the following terms and conditions.</p>
       
@@ -29,7 +59,7 @@ const TermsAndConditions = () => {
       
       <h2 className="text-2xl font-semibold mt-6">8. Contact Information</h2>
       <p>If you have any questions regarding these terms, please contact us at support@example.com.</p>
-    </div>
+    </div></div>
   );
 };
 

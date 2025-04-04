@@ -153,9 +153,10 @@ export default function Seller() {
       }
   
       try {
-        const sellerResponse = await axios.get(`${serverURL}/api/seller/get/${sellerId}`);
-    
-        if (!sellerResponse.data.isApproved) {
+        const sellerResponse = await axios.get(`${serverURL}/api/seller/${sellerId}`);
+        console.log("Seller Response:", sellerResponse.data.seller);
+
+        if (!sellerResponse.data.seller.approved) {
           alert("Your registration is not yet approved by the admin. Please wait for approval.");
           return;
         }
@@ -178,7 +179,7 @@ export default function Seller() {
         await axios.post(`${serverURL}/api/products/add`, newProduct);
 
         fetchProducts();
-
+        fetchSellerProducts();
         setNewProductName("");
         setNewProductPrice("");
         setNewProductCategory("");
@@ -311,9 +312,9 @@ export default function Seller() {
             <Link to="/acceptorders" className="navbar-link">
               <FcAcceptDatabase /> Orders
             </Link>
-            <Link to="/" className="navbar-link">
+            {/* <Link to="/" className="navbar-link">
               <FaHome /> Home
-            </Link>
+            </Link> */}
             <Link to="/sellerprofile" className="navbar-link">
               <FaUserAlt /> Profile
             </Link>

@@ -9,8 +9,11 @@ const {
   getSellerOrders,
   getSellerProducts,
   updateOrderStatus,
+  getSellerById,
 } = require('../Controller/sellerController');
-const{getsellerProduct}=require('../Controller/productController');
+const { getsellerProduct } = require('../Controller/productController');
+
+// const{getsellerProduct}=require('../Controller/productController');
 Product=require("../Model/productModel");
 // Routes
 router.post('/register', registerSeller);
@@ -21,7 +24,10 @@ router.put('/update/:id', updateSellerProfile);
 router.delete('/:id', deleteSeller);
 
 router.get('/products/:id', getsellerProduct);
-router.get('/get/:sellerId',getSellerOrders)
+router.get('/get/:sellerId',getSellerOrders);
+router.get('/:sellerId', getSellerById);
+
+
 router.post("/updateOrderStatus/:orderId",updateOrderStatus)
 // router.get('/seller/products/:sellerId', async (req, res) => {
 //   try {

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./Home.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { FcLike } from 'react-icons/fc'; // Heart icon
@@ -36,7 +36,15 @@ const navigate=useNavigate()
       setFilteredData(filtered);
     }
   }
+ 
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem("authToken");
+  //   if (!token) {
+  //     navigate("/login"); 
+  //   }
+  // }, [isLoggedIn]);
+  
   const handleLogedin=()=>{
     if(isLoggedIn){
       

@@ -16,7 +16,9 @@ export default function AcceptOrders() {
   const [orders, setOrders] = useState([]);
   const [statusUpdate, setStatusUpdate] = useState({}); // Track selected statuses for orders
   const sellerId = localStorage.getItem("sellerId"); // Get sellerId from localStorage
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handleLogedin = () => {
     if (isSellerLogged) {
       localStorage.removeItem("token");

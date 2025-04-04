@@ -1,8 +1,40 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "./Policy.css"
 const PrivacyPolicy = () => {
   return (
-    <div className="container mx-auto p-6 text-gray-800">
+    <div className="home-wrapper">
+       <nav className="cart-navbar">
+              <div className="cart-store-icon">
+                <Link to="/" className="navbar-brand">
+                  🛒 MyStore
+                </Link>
+              </div>
+              <div className="navbar-links">
+                <div className="link-group">
+                  {/* <Link to="/wishlist" className="cart-icon-container">
+                         <FcLike className="heart-icon" />
+                         {wishlistCount > 0 && (
+                           <span className="cart-count">{wishlistCount}</span>
+                         )}
+                       </Link>
+                        <Link to="/cart" className="cart-icon-container">
+                                     <FaShoppingCart />
+                                     {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+                                     Cart
+                                   </Link> */}
+                  {/* <Link to="/" className="navbar-link">
+                         <FaHome /> Home
+                       </Link> */}
+                  {/* <Link to="/about" className="navbar-link">
+                         <FaInfoCircle /> About
+                       </Link> */}
+                </div>
+              </div>
+            </nav>
+            <div className="privacy-policy-wrapper">
+
+
       <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
       <p className="mb-4">Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information.</p>
       
@@ -26,7 +58,7 @@ const PrivacyPolicy = () => {
       
       <h2 className="text-2xl font-semibold mt-6">7. Contact Us</h2>
       <p>If you have any questions about this Privacy Policy, please contact us at support@example.com.</p>
-    </div>
+    </div></div>
   );
 };
 

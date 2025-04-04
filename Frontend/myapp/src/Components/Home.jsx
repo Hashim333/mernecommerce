@@ -225,13 +225,13 @@ export default function Home() {
         // }
         if (error.response.status === 400) {
           // Bad Request - Missing data
-          alert("Failed to add product. Missing required information.");
+          alert("Failed to add product.must check you were logged in , Missing required information.");
         } else if (error.response.status === 404) {
           // Product Not Found
           alert("Product not found. Please try again later.");
         } else {
           // Other server-side errors
-          alert(`Failed to add product. ${error.response.data.message}`);
+          alert(`Failed to add product,.${error.response.data.message}`);
         }
       } else {
         console.error("Network/Unexpected Error:", error);

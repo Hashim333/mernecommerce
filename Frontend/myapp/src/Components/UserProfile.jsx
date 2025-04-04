@@ -5,6 +5,7 @@ import { SiSelenium } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { FaInfoCircle } from "react-icons/fa";
 import { IoReorderFour } from "react-icons/io5";
+import { CiDeliveryTruck } from "react-icons/ci";
 import FooterComponent from "./Footer";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import "./UseProfile.css";
@@ -107,7 +108,9 @@ const UserProfile = () => {
               </Link>
             )}
                   
-                  
+                  <Link to="/orderpage" className="navbar-link">
+                <CiDeliveryTruck />My Orders
+              </Link>
                 </div>
               </div>
             </nav>

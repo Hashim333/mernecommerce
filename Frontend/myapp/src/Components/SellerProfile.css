@@ -145,3 +145,23 @@
 .switch-auth-mode:hover {
   text-decoration: underline;
 }
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center everything */
+  gap: 15px; /* Space between elements */
+  width: 100%;
+  max-width: 400px; /* Prevents it from getting too wide */
+  margin: auto; /* Centers the form */
+}
+/* .input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+.input-container label {
+  font-size: 14px;
+  margin-bottom: 5px;
+} */

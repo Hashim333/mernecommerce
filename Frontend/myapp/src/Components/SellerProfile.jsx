@@ -23,13 +23,18 @@ const SellerProfile = () => {
   const [editStoreName, setEditStoreName] = useState("");
   const token = localStorage.getItem("authToken");
   const sellerId = localStorage.getItem("sellerId");
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const fetchSellerProfile = async () => {
       try {
-        const response = await axios.get(`${serverURL}/api/seller/${sellerId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          `${serverURL}/api/seller/${sellerId}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         setSeller(response.data.seller);
         setProducts(response.data.products);
       } catch (err) {
@@ -124,6 +129,58 @@ const SellerProfile = () => {
                 <strong>Store Name:</strong> {seller.storeName}
               </p>
             </div>
+
+            {isEditing && (
+              <div className="edit-profile-form">
+                <div className="input-container">
+
+                
+                <label>
+                  Name:
+                  <input
+                    type="text"
+                    value={editName}
+                    onChange={(e) => setEditName(e.target.value)}
+                    style={{
+                      width: "250px",
+                      height: "40px",
+                      border: "2px solid #4CAF50",
+                      borderRadius: "8px",
+                      padding: "5px 10px",
+                      fontSize: "16px",
+                      outline: "none",
+                      boxShadow: "0px 2px 5px rgba(0, 0, 0, 0.2)",
+                    }}
+                  />
+                </label>
+                <label>
+                  Store Name:
+                  <input
+                    type="text"
+                    value={editStoreName}
+                    onChange={(e) => setEditStoreName(e.target.value)}
+                    style={{
+                      width: "250px",
+                      height: "40px",
+                      border: "2px solid #4CAF50" /* Green border */,
+                      borderRadius: "8px" /* Rounded corners */,
+                      padding: "5px 10px" /* Padding for better spacing */,
+                      fontSize: "16px" /* Larger text */,
+                      outline: "none" /* Remove default focus outline */,
+                      boxShadow:
+                        "0px 2px 5px rgba(0, 0, 0, 0.2)" /* Subtle shadow */,
+                    }}
+                  />
+                </label>
+                <button
+                  className="btn btn-warning"
+                  onClick={updateSellerProfile}
+                >
+                  Update Profile
+                </button>
+                </div>
+              </div>
+            )}
             <button
               className="btn btn-warning"
               onClick={() => {
@@ -134,27 +191,6 @@ const SellerProfile = () => {
             >
               {isEditing ? "Cancel Update" : "Edit Profile"}
             </button>
-            {isEditing && (
-              <div className="edit-profile-form">
-                <label>
-                  Name:
-                  <input
-                    type="text"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                  />
-                </label>
-                <label>
-                  Store Name:
-                  <input
-                    type="text"
-                    value={editStoreName}
-                    onChange={(e) => setEditStoreName(e.target.value)}
-                  />
-                </label>
-                <button className="btn btn-warning" onClick={updateSellerProfile}>Update Profile</button>
-              </div>
-            )}
             <h3>Your Products</h3>
             {products.length > 0 ? (
               <ul className="product-list">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./AdminLogin.css"; // Add your CSS file here
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FooterComponent from "./Footer";
 
 const AdminLogin = () => {
@@ -37,7 +37,9 @@ const navigate=useNavigate();
   };
 
   return (
-    <div>
+    <div className="home-wrapper">
+       <nav className="navbar"> <div className="store-icon"> <Link to="/admin" className="navbar-brand"> 🛒 MyStore </Link> </div> <div className="navbar-links"> <div className="link-group">
+               </div> </div> </nav>
     <div className="admin-login-container">
       <h1>Admin Login</h1>
       <form onSubmit={handleSubmit} className="admin-login-form">
@@ -72,7 +74,7 @@ const navigate=useNavigate();
      
       </div>
     </div>
-    {/* <FooterComponent/> */}
+    <FooterComponent/>
     </div>
   );
 };

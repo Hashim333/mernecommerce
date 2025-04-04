@@ -1,0 +1,26 @@
+.privacy-policy-wrapper {
+    margin-top: 100px; /* Adds space from the navbar */
+    padding: 40px;
+    color: #333;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  
+  .privacy-policy-wrapper h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .privacy-policy-wrapper h2 {
+    font-size: 1.8rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .privacy-policy-wrapper p {
+    margin-bottom: 20px;
+  }
+  

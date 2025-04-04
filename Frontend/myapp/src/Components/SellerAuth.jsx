@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { myContext } from '../Context';
 import "./SellerProfile.css";
 import FooterComponent from './Footer';
@@ -60,6 +60,19 @@ const SellerAuth = () => {
   };
 
   return (
+    <div className='home-wrapper'>
+      <nav className="seller-navbar">
+              <div className="navbar-brand">
+                <Link to="/seller" className="navbar-logo">
+                  🛒 MyStore
+                </Link>
+              </div>
+              <div className="navbar-links">
+                <div className="link-group">
+                 
+                </div>
+              </div>
+            </nav>
     <div className="seller-auth-container">
       {message && <p className={`message ${message.type}`}>{message.text}</p>}
       {form === 'register' ? (
@@ -131,8 +144,8 @@ const SellerAuth = () => {
           </p>
         </form>
       )}
-      <div>
-      {/* <FooterComponent/>  */}
+     </div> <div>
+      <FooterComponent/> 
       </div>
     </div>
   );

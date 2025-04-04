@@ -53,10 +53,11 @@ const getAllOrders = async (req, res) => {
 };
 
 const Seller=require("../Model/sellerModel");
+
 const getAllSellers =async(req,res)=>{
 
   try{
-    const sellers=await Seller.find();
+    const sellers = await Seller.find({ approved: true });
     res.status(200).json(sellers);
   }catch(eroor){
     res.status(500).json({error:'An error occurred while fetching sellers.'})
@@ -134,5 +135,16 @@ const approveSeller = async (req, res) => {
     res.status(500).json({ message: "Error approving seller", error });
   }
 };
+const rejectSeller = async (req, res) => {
+  try {
+    const sellerId = req.params.id;
+    await Seller.findByIdAndDelete(sellerId); 
 
-  module.exports = { adminLogin ,getAllOrders,getAllSellers,approveSeller,getUnapprovedSellers,toggleBanUser,toggleBanSeller,contactMessage};
+    res.status(200).json({ message: "Seller rejected successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error rejecting seller", error });
+  }
+};
+
+
+  module.exports = { adminLogin ,getAllOrders,getAllSellers,approveSeller,getUnapprovedSellers,toggleBanUser,toggleBanSeller,contactMessage,rejectSeller};

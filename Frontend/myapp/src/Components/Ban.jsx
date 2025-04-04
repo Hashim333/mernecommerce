@@ -14,7 +14,9 @@ import FooterComponent from './Footer';
 export default function Ban() {
     const { user, setUser, serverURL } = useContext(myContext);
 const [isLoggedIn, setAdminLogged] = useState(false);
-
+ useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const loggedIn = localStorage.getItem('adminToken');
     if (loggedIn) {

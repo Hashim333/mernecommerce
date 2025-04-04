@@ -261,6 +261,9 @@ export default function Admin() {
           <Link to="/ban" className="navbar-link">
             <MdManageAccounts /> - Users
           </Link>
+          <Link to="/sellerapprove" className="navbar-link">
+          <FcApprove />Approve
+          </Link>
           <Link to="/banseller" className="navbar-link">
             <MdManageAccounts /> - Seller
           </Link>
@@ -270,9 +273,7 @@ export default function Admin() {
           <Link to="/contactmessage" className="navbar-link">
           <GrContactInfo />Support
           </Link>
-          <Link to="/sellerapprove" className="navbar-link">
-          <FcApprove />Approve
-          </Link>
+          
           {/* <Link to="/cart" className="cart-icon-container">
             <FaShoppingCart /> 
             {cartCount >0 &&<span  className='cart-count'>{cartCount}</span> }Cart
@@ -280,9 +281,9 @@ export default function Admin() {
           {/* <Link to="/adminseller" className="navbar-link">
             <FaUserAlt /> Sellers
           </Link> */}
-           <Link to="/" className="navbar-link">
+           {/* <Link to="/" className="navbar-link">
                         <FaHome /> Home
-                      </Link>
+                      </Link> */}
                       <Link to="/feedbacks" className="navbar-link">
                       <VscFeedback /> Feedbacks
           </Link>

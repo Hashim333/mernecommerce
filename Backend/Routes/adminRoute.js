@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllOrders, adminLogin ,getAllSellers,toggleBanUser,toggleBanSeller,contactMessage,getUnapprovedSellers,approveSeller} = require("../Controller/adminController");
+const { getAllOrders, adminLogin ,getAllSellers,toggleBanUser,toggleBanSeller,contactMessage,getUnapprovedSellers,approveSeller,rejectSeller} = require("../Controller/adminController");
 const { getAllUsers } = require("../Controller/usercontroller");
 const { getAllProducts, deleteProduct } = require("../Controller/productController");
 
@@ -18,5 +18,7 @@ router.delete("/products/:productId", deleteProduct);
 router.get("/sellers/get",getAllSellers);
 router.get("/unapproved",getUnapprovedSellers);
 router.put("/approve/:id",approveSeller);
+router.delete("/reject/:id", rejectSeller);
+
 
 module.exports = router;
