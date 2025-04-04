@@ -57,6 +57,28 @@ function Signup() {
   
 
   return (
+    <div className="home-wrapper">
+      <nav className="navbar">
+                    <div className="store-icon">
+                      <Link to="/" className="navbar-brand">
+                        🛒 MyStore
+                      </Link>
+                    </div>
+                    <div className="navbar-links">
+                      <div className="link-group">
+                      
+                      {/* {token && (
+                    <Link to="/sellerlogin" className="navbar-link">
+                      <SiSelenium />Be A Seller
+                    </Link>
+                  )} */}
+                        
+                        {/* <Link to="/orderpage" className="navbar-link">
+                      <CiDeliveryTruck />My Orders
+                    </Link> */}
+                      </div>
+                    </div>
+                  </nav>
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
       <div className="bg-white p-3 rounded w-25">
         <h2>Register</h2>
@@ -135,9 +157,9 @@ function Signup() {
           Login
         </Link>
       </div>
-
+</div>
      <div>
-     {/* <FooterComponent/> */}
+     <FooterComponent/>
      </div>
     </div>
   );

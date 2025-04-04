@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { myContext } from "../Context";
 import "./Login.css"; // Import the CSS
+import FooterComponent from "./Footer";
 
 function Login() {
   const { setUser, email, setEmail, password, setPassword, setIsLogedIn } = useContext(myContext);
@@ -34,6 +35,28 @@ function Login() {
   };
 
   return (
+    <div className="home-wrapper">
+       <nav className="navbar">
+                          <div className="store-icon">
+                            <Link to="/" className="navbar-brand">
+                              🛒 MyStore
+                            </Link>
+                          </div>
+                          <div className="navbar-links">
+                            <div className="link-group">
+                            
+                            {/* {token && (
+                          <Link to="/sellerlogin" className="navbar-link">
+                            <SiSelenium />Be A Seller
+                          </Link>
+                        )} */}
+                              
+                              {/* <Link to="/orderpage" className="navbar-link">
+                            <CiDeliveryTruck />My Orders
+                          </Link> */}
+                            </div>
+                          </div>
+                        </nav>
     <div className="login-container">
       <div className="login-box">
         <h2 className="text-center mb-3">Login</h2>
@@ -69,6 +92,11 @@ function Login() {
         </div>
       </div>
     </div>
+   
+     <div>
+         <FooterComponent/>
+         </div>
+          </div>
   );
 }
 
